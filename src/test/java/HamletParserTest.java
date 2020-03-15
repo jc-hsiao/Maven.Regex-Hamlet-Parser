@@ -57,4 +57,11 @@ public class HamletParserTest {
         Assert.assertFalse(hamletParser.findPattern("this is not funny", "hello"));
     }
 
+    @Test
+    public void replaceTest(){
+        String s1 = "polly wants a cracker";
+        String expected = "polly wants a peanut";
+        Assert.assertEquals(expected,hamletParser.replace("cracker","peanut",s1));
+    }
+
 }

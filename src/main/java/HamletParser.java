@@ -38,39 +38,26 @@ public class HamletParser {
     }
 
     public String parseHamletToLeon(String data){
-        Pattern p = Pattern.compile("(HAMLET)");
-        Pattern p2 = Pattern.compile("(Hamlet)");
-        Matcher m = p.matcher(data);
-        Matcher m2 = p2.matcher(m.replaceAll("LEON"));
-        return this.hamletData = m2.replaceAll("Leon");
-    }
-
-    public boolean findHamlet(String data){
-        Pattern p = Pattern.compile("(HAMLET)");
-        Pattern p2 = Pattern.compile("(Hamlet)");
-        Matcher m = p.matcher(data);
-        if(!m.find())
-            m = p2.matcher(data);
-
-        return m.find();
+        String replaceData = replace("HAMLET","LEON",data);
+        return replace("Hamlet","Leon",replaceData);
     }
 
     public String parseHoratioToTariq(String data){
-        Pattern p = Pattern.compile("(HORATIO)");
-        Pattern p2 = Pattern.compile("(Horatio)");
-        Matcher m = p.matcher(data);
-        Matcher m2 = p2.matcher(m.replaceAll("TARIQ"));
-        return this.hamletData = m2.replaceAll("Tariq");
+        String replaceData = replace("HORATIO","TARIQ",data);
+        return replace("Horatio","Tariq",replaceData);
+    }
+
+    public String replace (String oldS, String newS, String data){
+        Pattern p = Pattern.compile("("+oldS+")");
+        return p.matcher(data).replaceAll(newS);
+    }
+
+    public boolean findHamlet(String data){
+        return findPattern(data,"HAMLET","Hamlet");
     }
 
     public boolean findHoratio(String data){
-        Pattern p = Pattern.compile("(HORATIO)");
-        Pattern p2 = Pattern.compile("(Horatio)");
-        Matcher m = p.matcher(data);
-        if(!m.find())
-            m = p2.matcher(data);
-
-        return m.find();
+        return findPattern(data,"HORATIO","Horatio");
     }
 
     public boolean findPattern(String data ,String... str){
